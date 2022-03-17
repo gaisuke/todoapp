@@ -7,16 +7,16 @@ import TodoGroup from './TodoGroup';
 import classes from './TodoList.module.css';
 
 const TodoList = () => {
-  const [todoUnFinish, setTodoUnFinish] = useState([]);
-  const [todoFinish, setTodoFinish] = useState([]);
+  const [todoActive, setTodoActive] = useState([]);
+  const [todoCompleted, setTodoCompleted] = useState([]);
   const todos = useSelector((state) => state.todo);
   const { isLoading, error, data: dataTodos } = todos;
-  // useEffect(() => {
-  //   // const finish = dataTodos.filter((todo) => todo.status === 0);
-  //   // const unfinish = dataTodos.filter((todo) => todo.status === 1);
-  //   // setTodoUnFinish(finish);
-  //   // setTodoFinish(unfinish);
-  // }, [dataTodos]);
+  useEffect(() => {
+    const completed = dataTodos.filter((todo) => todo.status === 0);
+    const active = dataTodos.filter((todo) => todo.status === 1);
+    setTodoActive(completed);
+    setTodoCompleted(active);
+  }, [dataTodos]);
   let contentWrapper;
   if (isLoading) {
     contentWrapper = (
@@ -44,11 +44,11 @@ const TodoList = () => {
   if (!isLoading && !error
     //  && dataTodos.length > 0
      ) {
-    const showAllTodos = todoFinish.length > 0 && todoUnFinish.length > 0;
+    const showAllTodos = todoCompleted.length > 0 && todoActive.length > 0;
     contentWrapper = (
       <div className={`${classes.todos} ${showAllTodos ? classes.todosColumn : ''}`}>
-        {todoUnFinish.length > 0 && <TodoGroup title="Unfinished" todos={todoUnFinish} sortAsc />}
-        {todoFinish.length > 0 && <TodoGroup title="Finished" todos={todoFinish} />}
+        {todoActive.length > 0 && <TodoGroup title="Active" todos={todoActive} sortAsc />}
+        {todoCompleted.length > 0 && <TodoGroup title="Completed" todos={todoCompleted} />}
       </div>
     );
   }

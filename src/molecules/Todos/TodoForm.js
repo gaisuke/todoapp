@@ -104,7 +104,7 @@ const TodoForm = () => {
               checked={status}
               onChange={statusChangeHandler}
             />
-            Finished
+            Completed
           </label>
         </div>
         <div className={classes['button-group']}>

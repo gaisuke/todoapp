@@ -7,7 +7,7 @@ const API_URL = "https://virtserver.swaggerhub.com/hanabyan/todo/1.0.0/to-do-lis
 const initialState = {
     isLoading: true,
     error: null,
-    resdata: [],
+    data: [],
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -22,7 +22,7 @@ const apiReducer = (state = initialState, action) => {
       return {
         isLoading: false,
         error: null,
-        resdata: action.data,
+        data: action.data,
       };
     case "ERROR":
       return {
@@ -46,6 +46,7 @@ const apiCall = () => {
           throw new Error("Connection Failed!");
         }
         dispatch({ type: "SUCCESS", data: res.data});
+        console.log("koneksi berhasil dan ini datanya = ", res.data);
       } catch (error) {
         dispatch({ type: "ERROR", error: error.message });
       }
@@ -55,7 +56,7 @@ const apiCall = () => {
     req,
     isLoading: apiState.isLoading,
     error: apiState.error,
-    resdata: apiState.resdata,
+    data: apiState.data,
   };
 };
 

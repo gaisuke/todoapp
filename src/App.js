@@ -14,7 +14,7 @@ const App = () => {
     req,
     isLoading,
     error,
-    resdata,
+    data,
   } = apiCall();
   useEffect(() => {
     req();
@@ -24,15 +24,15 @@ const App = () => {
       type: 'GetListData',
       isLoading,
       error,
-      resdata,
+      data,
     });
-  }, [dispatch, isLoading, error, resdata]);
+  }, [dispatch, isLoading, error, data]);
   return (
     <>
       <Navbar />
       {uiReducer.showModal && <Modal />}
       <main>
-        {uiReducer.showForm && <TodoForm />}
+        {uiReducer.showTodoForm && <TodoForm />}
         <TodoList />
       </main>
     </>
