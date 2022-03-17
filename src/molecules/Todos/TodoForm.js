@@ -81,18 +81,18 @@ const TodoForm = () => {
   return (
     <Card className={classes.form}>
       <h3 className={classes.title}>
-        {todoItem ? 'Update Task' : 'Add New Task'}
+        {todoItem ? 'Ubah Task' : 'Buat Task Baru'}
       </h3>
       <form autoComplete="off" onSubmit={saveTodoHandler}>
         <Input
           id="title"
-          label="Title"
+          label="Judul"
           value={title}
           onChange={titleChangeHandler}
         />
         <Input
           id="description"
-          label="Description"
+          label="Deskripsi"
           value={description}
           onChange={descriptionChangeHandler}
         />
@@ -104,17 +104,17 @@ const TodoForm = () => {
               checked={status}
               onChange={statusChangeHandler}
             />
-            Completed
+            Selesai
           </label>
         </div>
         <div className={classes['button-group']}>
           <Button
-            title={todoItem ? 'Update Task' : 'Save Task'}
+            title={todoItem ? 'Ubah Task' : 'Simpan Task'}
             variant="primary"
             type="submit"
           />
           <Button
-            title="Cancel"
+            title="Batal"
             variant="danger"
             onClick={closeTodoForm}
           />

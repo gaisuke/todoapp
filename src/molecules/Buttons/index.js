@@ -5,7 +5,7 @@ const Buttons = ({ id, status, isDetail = false }) => {
     const dispatch = useDispatch();
     
     const deleteTodoHandler = () => {
-        const confirm = window.confirm('Do you want to delete this task?');
+        const confirm = window.confirm('Yakin nih mau dihapus?');
         if (!confirm) {
             return;
         }
@@ -30,13 +30,13 @@ const Buttons = ({ id, status, isDetail = false }) => {
     return (
         <div className="flex gap-1 mt-5">
             <Button
-                title="Update"
+                title="Ubah"
                 size="sm"
                 onClick={updateTodoHandler}
             />
             {!status && (
                 <Button
-                title="Delete"
+                title="Hapus"
                 variant="danger"
                 size="sm"
                 onClick={deleteTodoHandler}

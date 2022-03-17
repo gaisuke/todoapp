@@ -15,11 +15,11 @@ const DetailTask = () => {
       <table className={classes.table}>
         <tbody>
           <tr>
-            <th>Title</th>
+            <th>Judul</th>
             <td>{todoItem.title}</td>
           </tr>
           <tr>
-            <th>Description</th>
+            <th>Deskripsi</th>
             <td>{todoItem.description}</td>
           </tr>
           <tr>
@@ -27,7 +27,7 @@ const DetailTask = () => {
             <td>{todoItem.status ? 'Completed' : 'Active'}</td>
           </tr>
           <tr>
-            <th>Created At</th>
+            <th>Dibuat pada</th>
             <td>{formatDate}</td>
           </tr>
         </tbody>

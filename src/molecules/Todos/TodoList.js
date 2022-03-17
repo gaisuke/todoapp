@@ -37,7 +37,7 @@ const TodoList = () => {
    ) {
     contentWrapper = (
       <Card className={classes.info}>
-        <p>Data not found. Please add new task.</p>
+        <p>Data kosong. Buatlah task baru!</p>
       </Card>
     );
   }
@@ -47,8 +47,8 @@ const TodoList = () => {
     const showAllTodos = todoCompleted.length > 0 && todoActive.length > 0;
     contentWrapper = (
       <div className={`${classes.todos} ${showAllTodos ? classes.todosColumn : ''}`}>
-        {todoActive.length > 0 && <TodoGroup title="Active" todos={todoActive} sortAsc />}
-        {todoCompleted.length > 0 && <TodoGroup title="Completed" todos={todoCompleted} />}
+        {todoActive.length > 0 && <TodoGroup title="Belum Selesai" todos={todoActive} sortAsc />}
+        {todoCompleted.length > 0 && <TodoGroup title="Selesai" todos={todoCompleted} />}
       </div>
     );
   }

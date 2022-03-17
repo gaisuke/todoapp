@@ -14,11 +14,11 @@ const ModalBackdrop = () => {
   const hideModal = () => {
     dispatch({ type: 'HideModal' });
   };
-  return <div onClick={hideModal} className={classes.backdrop} />;
+  return <div onClick={hideModal} className={classes.backdrop} class="z-40"/>;
 };
 
 const ModalOverlay = () => (
-  <Card className={classes.overlay}>
+  <Card className={classes.overlay} class="z-50">
     <DetailTask />
   </Card>
 );
