@@ -6,7 +6,7 @@ const API_URL = "https://virtserver.swaggerhub.com/hanabyan/todo/1.0.0/to-do-lis
 
 const initialState = {
     isLoading: true,
-    err: null,
+    error: null,
     resdata: [],
 };
 
@@ -16,19 +16,19 @@ const apiReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
-        err: null,
+        error: null,
       };
     case "SUCCESS":
       return {
         isLoading: false,
-        err: null,
+        error: null,
         resdata: action.data,
       };
     case "ERROR":
       return {
         ...state,
         isLoading: false,
-        err: action.err,
+        error: action.error,
       };
     default:
       return state;
@@ -42,22 +42,21 @@ const apiCall = () => {
       dispatch({ type: "FETCH"});
       try {
         const res = await axios.get(API_URL);
-        if (res.status == 200) {
-          dispatch({ type: "SUCCESS", data: res.data});
+        if (res.status !== 200) {
+          throw new Error("Connection Failed!");
         }
-        throw new Error("Connection Failed!");
+        dispatch({ type: "SUCCESS", data: res.data});
       } catch (error) {
-        dispatch({ type: "ERROR", err: error.message });
+        dispatch({ type: "ERROR", error: error.message });
       }
-    }, [])
-  
+    }, []);
 
   return {
     req,
     isLoading: apiState.isLoading,
-    err: apiState.err,
+    error: apiState.error,
     resdata: apiState.resdata,
-  }
-}
+  };
+};
 
 export default apiCall;
